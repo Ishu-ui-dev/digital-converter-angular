@@ -1,0 +1,42 @@
+
+        <h2 class="main-heading">MARKET HISTORY</h2> 
+        <div class="table-responsive">
+                <table width="100%" st-table = "rowCollection" st-safe-src="market_history"  class="table table-striped market-history">
+                        <thead>
+                            <tr>
+                                <th st-sort = "date">Date</th>
+                                <th st-sort = "market_trade">Buy/Sell</th>
+                                <th st-sort = "market_order">Bid/Ask</th>
+                                <th st-sort = "total_units">Total Units(XRP)</th>
+                                <th st-sort = "total_cost">Total Cost(ETH)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="width-auto" ng-repeat="market in rowCollection">
+                                    <td class="align-left">{{market.date}}</td>
+                                    <td class="align-right">
+                                        <span ng-class="{'change-up': market.market_trade == 'BUY', 'change-down': market.market_trade == 'SELL'}">
+                                                {{market.market_trade}}
+                                        </span>
+                                    </td>
+                                    <td class="align-right">{{market.market_order}}</td>
+                                    <td class="align-right">{{market.total_units}}</td>
+                                    <td class="align-right">{{market.total_cost}}</td>
+                            </tr>
+                            
+                        </tbody>
+                        <!-- <tfoot>
+                            <tr>
+                                <td class="text-center" st-pagination = "" st-items-by-page="10" colspan="6"></td>
+                            </tr>
+                        </tfoot> -->
+                        <tfoot>
+                                <tr>
+                                    <td colspan="5" class="text-center">
+                                        <div st-pagination="" st-items-by-page="10" st-displayed-pages="5"></div>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                    </table>
+        </div>
+        

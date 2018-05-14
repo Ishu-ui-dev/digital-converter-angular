@@ -1,0 +1,61 @@
+<div class="ip-whitelist-container">
+    <h1>IP Addresses</h1>
+    <div class="panel panel-warning text-center">
+        <div class="panel-heading">
+            <span class="fa fa-warning">
+            </span>
+            IP Address Whitelisting
+        </div>
+        <div class="panel-body">
+            <p class="text-center">
+                By adding one or more IP address to this list, you will only be able to place orders or withdraw funds from those addresses.
+                To add or remove an IP address, you must have two-factor authentication enabled and provide your authenticator
+                code before submitting any changes.
+            </p>
+        </div>
+        
+    </div>
+
+    <form class="form-horizontal">
+            <div class="form-group">
+                <label for="newAddress" class="col-sm-2 control-label">Address</label>
+                <div class="col-sm-2">
+                    <input type="number" class="form-control" placeholder="000">
+                </div>
+                <div class="col-sm-2">
+                    <input type="number" class="form-control" placeholder="000">
+                </div>
+                <div class="col-sm-2">
+                    <input type="number" class="form-control" placeholder="000">
+                </div>
+                <div class="col-sm-2">
+                    <input type="number" class="form-control" placeholder="000">
+                </div>
+            </div>
+    </form>
+
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label for = "newAuthenticator" class="col-sm-2 control-label"></label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id - "newAuthenticator" placeholder="012345">
+            </div>
+            <button type="button" class="btn btn-primary">Set Address</button>
+        </div>
+
+    </form>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Address</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+
+</div>

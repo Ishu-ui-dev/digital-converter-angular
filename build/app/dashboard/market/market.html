@@ -1,0 +1,60 @@
+<div ng-include="'app/dashboard/market/current-summary/current-summary.html'"></div>
+<div ng-include="'app/dashboard/market/current-volume/current-volume.html'"></div>
+
+<div ng-repeat = "data in ethereum_market">
+    <h2 class="main-heading">{{data.marketName | uppercase  }}</h2>
+    <div class="table-responsive">
+        <table st-table="displayCollection" st-safe-src ="data.markets" class="table table-striped text-center home-market">
+            <thead>
+                <tr>
+                        <th st-sort="market">MARKET</th>
+                        <th st-sort="currency">CURRENCY</th>
+                        <th st-sort="volume">VOLUME</th>
+                        <th st-sort="change">% CHANGE</th>
+                        <th st-sort="last_price">LAST PRICE</th>
+                        <th st-sort="hourly_high">24HR HIGH </th>
+                        <th st-sort="hourly_low">24HR LOW</th>
+                        <th st-sort="spread">% SPREAD</th>
+                        <th st-sort="added">ADDED</th>
+                </tr>
+            </thead>
+            <tbody ng-show="isLoading">
+                    <tr>
+                        <td colspan="9" class="text-center"> <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i></td>
+                    </tr>
+            </tbody>
+            <tbody ng-show="!isLoading">
+                <tr ng-repeat="row in displayCollection track by $index">
+                    <td class="align-left">
+                        <a ui-sref="market({'market_name':row.market})">{{row.market}}</a>
+                    </td>
+                    <td class="align-left">{{row.currency}}</td>
+                    <td class="align-right">{{row.volume}}</td>
+                    <!-- <td class="align-right">
+                        <span ng-class="{'change-up': (row.change| parseNum) > 0, 'change-down': (row.change | parseNum) < 0}">{{row.change}}</span>
+                    </td> -->
+                    <td class="align-right">
+                        <span ng-class="{'change-up': row.change >= 0, 'change-down': row.change < 0}">{{row.change}}%</span>
+                    </td>
+                    <td class="align-right">{{row.lastPrice}}</td>
+                    <td class="align-right">{{row.hourlyHigh}}</td>
+                    <td class="align-right">{{row.hourlyLow}}</td>
+                    <td class="align-right">{{row.spread}}</td>
+                    <td class="align-left" ng-bind="checkMoment(row.added)"></td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="9" class="text-center">
+                        <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="7"></div>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    
+    </div>
+</div>
+
+
+
+

@@ -1,0 +1,19 @@
+<section class="multi-column-currency-slider" ng-controller="CurrentVolumeController">
+    <div class="owl-carousel owl-styles">
+        <div ng-repeat="volume in currentvolume" ng-repeat-owl-carousel carousel-init="carouselInitializer">
+            <a href="#">
+                <figure>
+                    <img src="assets/images/XVG.png" alt="" />
+                </figure>
+                <div class="figure-detail text-right">
+                    <p>Top Volume</p>
+                    <h5>{{volume.market}}({{volume.symbol}})</h5>
+                    <p>{{volume.price}}</p>
+                    <p>
+                        <small>{{volume.volume}}</small>
+                    </p>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>

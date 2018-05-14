@@ -1,0 +1,76 @@
+
+<div class="table-responsive open-orders">
+    <table width="100%" st-table="open_orders" class="table table-striped text-center">
+        <thead>
+            <tr class="width-auto no-border-required">
+                <td colspan="10">
+                    <div class="table-toolbar">
+                        <div class="col-sm-6 align-left">
+                            <h2 class="main-heading">OPEN</h2>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="toolbar-right pull-right">
+                                <div class="select-rows">
+                                    <label>Display</label>
+                                    <select ng-model="rows_per_page.value" ng-options="row.value as row.label for row in rows_per_page" ng-change="changeOnSelect(rows_per_page.value)">
+                                    </select>
+                                    <label>rows</label>
+                                </div>
+                                <div class="select-search">
+                                    <label>Search</label>
+                                    <input type="search" class="form-control" />
+                                </div>
+                                <button class="btn btn-default btn-toolbar">
+                                    <i class="fa fa-refresh"></i>
+                                </button>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <span class="fa fa-plus"></span>
+                </th>
+                <th st-sort="order_date">ORDER DATE</th>
+                <th st-sort="market">MARKET</th>
+                <th st-sort="type">TYPE</th>
+                <th st-sort="order_type">BID/ASK</th>
+                <th st-sort="units_filled">UNITS FILLED</th>
+                <th st-sort="units_total">UNITS TOTAL</th>
+                <th st-sort="actual_rate">ACTUAL RATE</th>
+                <th st-sort="estimated_total">ESTIMATED TOTAL</th>
+                <th>
+                    <span class="fa fa-times"></span>
+                </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="width-auto" ng-repeat="open_order in open_orders">
+                <td>1</td>
+                <td>{{open_order.order_date}}</td>
+                <td>{{open_order.market}}</td>
+                <td>{{open_order.type}} </td>
+                <td>{{open_order.order_type}}</td>
+                <td>{{open_order.units_filled}}</td>
+                <td>{{open_order.units_total}}</td>
+                <td>{{open_order.actual_rate}}</td>
+                <td>{{open_order.estimated_total}}</td>
+                <td>
+                    <button class="btn btn-danger btn-xs">
+                        <i class="fa fa-times" ng-click="removeRow()"></i>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td class="text-center" st-pagination="" st-items-by-page="itemsByPage" colspan="10">
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>

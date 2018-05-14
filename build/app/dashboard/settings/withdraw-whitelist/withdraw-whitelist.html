@@ -1,0 +1,52 @@
+<div class="withdrawal-container">
+    <h1>Withdrawal Addresses</h1>
+    <div class="panel panel-warning text-center">
+        <div class="panel-heading">
+            <i class="fa fa-warning"></i>
+            WITHDRAWAL ADDRESS WHITELISTING
+        </div>
+        <div class="panel-body">
+            <p>By adding a digital currency address to this list, you will only be able to withdraw that specified currency to one of its matching addresses. To add or delete a currency and address pair, you must have two-factor authentication enabled and provide your authenticator code before submitting any changes. <b>Warning: If you have this enabled on any currency, all currencies need to have a specified withdrawal address.</b></p>
+        </div>
+    </div>
+    <form class="form-horizontal" role="form">
+        <div class="form-group">
+            <label for="newCurrency" class="col-sm-2 control-label"></label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="newCurrency" placeholder="ETH, BTC, DASH..."/>
+            </div>
+            <label for="newAddress" class="col-sm-2 control-label">Address</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control col-sm-2" id="newAddress" placeholder="0x0000ABCDEFGHABCD" />
+            </div>
+        </div>
+    </form>
+
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label class="newAuthenticator" class="col-sm-2 control-label"></label>
+            <div class="col-sm-4">
+                <button class="btn btn-primary" type="button">Set Address</button>
+            </div>
+        </div>
+    </form>
+
+    <div class="tabel-responsive withdrawal-table">
+        <table width="100%">
+            <thead>
+                <tr>
+                    <th>Currency</th>
+                    <th>
+                        Address
+                    </th>
+                    <th>
+                        Delete
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div> 
+</div>

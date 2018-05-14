@@ -1,0 +1,37 @@
+<div class="container setting-wrapper"> 
+    <div class="row">
+            <div class="col-sm-3 col-xs-12">
+                    <ul class="setting-option navbar-fixed list-unstyled nav navbar-fixed">
+                        <li>
+                            <a ui-sref="setting.summary" ui-sref-active="active"> Summary</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a ui-sref="setting.change-password" ui-sref-active="active">Password</a>
+                        </li>
+                        <li>
+                            <a ui-sref="setting.2Fa" ui-sref-active="active">Two-Factor Authentication</a>
+                        </li>
+                        <li>
+                          <a ui-sref="setting.api-keys" ui-sref-active="active">API Keys</a>
+                        </li>
+                        <li>
+                            <a ui-sref = "setting.whitelist" ui-sref-active="active">IP whitelist</a>
+                        </li>
+                        <li>
+                            <a ui-sref="setting.withdraw-whitelist" ui-sref-active="active">Withdrawal Whitelist</a>
+                        </li>
+                        <li>
+                            <a ui-sref="setting.enableaccount" ui-sref-active="active">Enable Account</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm-9 col-xs-12">
+                    <div class="text-center" style="margin-top: 50px;" ng-if="loadingData">
+                        <i class="fa fa-spinner fa-spin fa-4x" aria-hidden="true"></i>
+                    </div>
+                    <ui-view></ui-view>
+                </div>
+    </div>
+    
+</div>

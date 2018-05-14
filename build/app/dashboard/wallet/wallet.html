@@ -1,0 +1,381 @@
+<section class="withdrawal-container">
+    <h2 class="main-heading">
+        ACCOUNT BALANCES
+    </h2>
+    <h5>Estimated Value: 0.00000000 BTC / 0.00 USD</h5>
+    <div class="account-table">
+        <div class="table-responsive">
+            <table st-table="displayedCollection" st-safe-src="account_balance" class="table table-striped text-center">
+                <thead>
+                    <tr class="width-auto no-border-required">
+                        <td colspan="9">
+                            <div class="table-toolbar">
+
+                                <div class="col-sm-6 align-left">
+
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" value="checkList" ng-model="checkList" ng-change="onHideZeroValue(checkList)" />Hide zero balance
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="toolbar-right pull-right">
+                                        <div class="select-rows">
+                                            <label>Display</label>
+                                            <select ng-model="rows_per_page.value" ng-options="v for v in rows_per_page.values" ng-change="onChangePageSize(rows_per_page.value)">
+                                            </select>
+                                            <label>rows</label>
+                                        </div>
+                                        <div class="select-search">
+                                            <label>Search</label>
+                                            <input st-search="" type="search" class="form-control" />
+
+                                        </div>
+                                        <button class="btn btn-default btn-toolbar">
+                                            <i class="fa fa-refresh"></i>
+                                        </button>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <span class="fa fa-plus"></span>
+                        </th>
+                        <th st-sort="currency_name">CURRENCY NAME</th>
+                        <th st-sort="symbol">SYMBOL</th>
+                        <th st-sort="available_balance">AVIALABLE BALANCE</th>
+                        <th st-sort="pending_deposit">PENDING DEPOSIT</th>
+                        <th st-sort="reserved">RESERVED </th>
+                        <th st-sort="deposit">TOTAL</th>
+                        <th st-sort="est_bal_value">EST. BTC VALUE</th>
+                        <th st-sort="change">% CHANGE</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="balance in displayedCollection track by $index">
+                        <td>
+                            <button class="btn btn-primary btn-plus btn-sm text-center wallet" ng-click="selectedDepositCoin(balance)" data-toggle="modal"
+                                data-target="#{{balance.coinId}}">
+                                <span class="fa fa-plus"></span>
+                            </button>
+                            <button class="btn btn-primary btn-plus btn-sm text-center wallet" ng-click="selectedWithdrawalCoin(balance)" data-toggle="modal"
+                                data-target="#{{balance.coinId}}">
+                                <span class="fa fa-minus"></span>
+                            </button>
+                        </td>
+
+                        <td class="align-left text-capitalize">{{balance.currency_name}}{{balance.with_id}}</td>
+                        <td class="text-center">{{balance.symbol}}</td>
+                        <td class="align-right">{{balance.available_balance}} </td>
+                        <td class="align-right">{{balance.pending_deposit}}</td>
+                        <td class="align-right">{{balance.reserved}}</td>
+                        <td class="align-right">{{balance.deposit}}</td>
+                        <td class="align-right">{{balance.est_bal_value}}</td>
+                        <td class="align-right">{{balance.change}}</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                        <tr>
+                            <td colspan="9" class="text-center">
+                                <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="7"></div>
+                            </td>
+                        </tr>
+                    </tfoot>
+            </table>
+
+
+            <div class="modal fade" my-modal id="{{selectedCoin.dep_coin_id}}" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"
+                style="margin-top:50px">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="modal-heading">DEPOSIT {{selectedCoin.currency_name | uppercase}} ({{selectedCoin.coinId}})</h5>
+                                </div>
+                                <div class="panel-body">
+                                    <form role="form" class="form-horizontal">
+                                        <div class="col-lg-12">
+                                            <div class="ack-info ack-danger">
+                                                <p>
+                                                    <strong>I acknowledge the following information: </strong>
+                                                    By depositing tokens to this address, you agree to our
+                                                    <a href="#">deposit recovery policy.</a> Depositing tokens to this address other
+                                                    than BTC may result in your funds being lost.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3 control-label">Address</label>
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                                <div class="input-group new-address">
+                                                    <div class="input-group-btn">
+                                                        <button class="btn btn-default" style="" type="button" disabled="">
+                                                            <i class="fa fa-map-marker"></i>
+                                                        </button>
+                                                    </div>
+                                                    <!-- /btn-group -->
+                                                    <input type="text" class="form-control text-right dyn-input-readonly" style="font-size:12px" ng-model="qrcode" readonly=""
+                                                        placeholder="Generate a new address">
+                                                    <span class="input-group-addon">ADDR</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <div class="ack-info ack-danger">
+                                                <p>
+                                                    <strong>Depositing tokens to this address other than BTC will result in your
+                                                        funds being lost. </strong>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 qr-imge" ng-if="have_qrcode">
+                                            <qrcode data="{{qrcode}}" size="120"></qrcode>
+                                        </div>
+
+                                        <div class="col-sm-12 text-center" ng-if="!have_qrcode">
+                                            <button type="button" class="btn btn-primary" ng-click="getQRCodeAddress()">
+                                                <i class="fa fa-map-marker"></i>
+                                                New Address
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <div class="alert alert-info alert-override trans-updates">
+                                <i class="fa fa-check-circle"></i>
+                                <span>The last block update occured 14 minutes ago</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" my-modal id="{{selectedCoin.wth_coin_id}}" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"
+                style="margin-top:50px">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title">Confirm Bitcoin Withdrawal</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div class="col-sm-6 align-left">
+                                            <h2 class="main-heading">
+                                                Withdrawal {{selectedCoin.currency_name}}
+                                            </h2>
+                                        </div>
+                                        <div class="col-sm-6 align-right">
+                                            <h2 class="main-heading">
+                                                Currently Available: {{selectedCoin.available_balance}} {{selectedCoin.coinId}}
+                                            </h2>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel-body">
+                                    <form role="form" class="form-horizontal" id="walletWithdrawalForm">
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Address</label>
+                                            <div class="col-sm-9">
+                                                <div class="input-group new-address">
+                                                    <div class="input-group-btn">
+                                                        <button class="btn btn-default" type="button">
+                                                            <i class="fa fa-map-pin"></i>
+                                                        </button>
+                                                    </div>
+                                                    <!-- /btn-group -->
+                                                    <input type="text" class="form-control text-right" ng-model="hexAddress" style="font-size:12px" placeholder="Generate a new address">
+                                                    <span class="input-group-addon">ADDR</span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Quantity</label>
+                                            <div class="col-sm-9">
+                                                <div class="input-group new-address">
+                                                    <div class="input-group-btn">
+                                                        <button class="btn btn-default btn-primary" ng-click="maximumWithdrawQuantity(selectedCoin.available_balance)" type="button">
+                                                            <i class="fa fa-angle-double-up"></i>
+                                                        </button>
+                                                    </div>
+                                                    <!-- /btn-group -->
+                                                    <input type="text" class="form-control text-right" style="font-size:12px" ng-model="maxQuantity" ng-change="textChange()" placeholder="0">
+                                                    <span class="input-group-addon">{{selectedCoin.coinId}}</span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Tx Fee</label>
+                                            <div class="col-sm-9">
+                                                <div class="input-group">
+                                                    <div class="input-group-btn">
+                                                        <button class="btn btn-default" type="button" disabled="">
+                                                            <i class="fa fa-minus"></i>
+                                                        </button>
+                                                    </div>
+                                                    <!-- /btn-group -->
+                                                    <input class="form-control text-right" type="text" ng-model="selectedCoin.transanction_fee" value="{{selectedCoin.transanction_fee}}"
+                                                        readonly="readonly" placeholder="{{selectedCoin.transanction_fee}}">
+                                                    <span class="input-group-addon">{{selectedCoin.coinId}}</span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Withdrawal</label>
+                                            <div class="col-sm-9">
+                                                <div class="input-group new-address">
+                                                    <div class="input-group-btn">
+                                                        <button class="btn btn-default" type="button" disabled="">
+                                                            <i class="fa fa-cloud-upload"></i>
+                                                        </button>
+                                                    </div>
+                                                    <!-- /btn-group -->
+                                                    <input type="text" class="form-control text-right" readonly="readonly" ng-model="withdrawalAmount" placeholder="- {{selectedCoin.transanction_fee}}">
+                                                    <span class="input-group-addon">{{selectedCoin.coinId}}</span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <div class="ack-info ack-danger">
+                                                <p>
+                                                    Please verify your withdrawal address. We cannot refund an incorrect withdrawal.
+                                                    <strong>Do not withdrawal directly to a crowdfund or ICO. We will not credit
+                                                        your account with tokens from that sale.</strong>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 text-center">
+                                            <button class="btn btn-primary" data-dismiss="modal" ng-click="ConfirmationModal()">
+                                                <i class="fa fa-cloud-upload"></i>
+                                                Withdrawal
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+
+                            </div>
+                            <div class="alert alert-info alert-override trans-updates">
+                                <i class="fa fa-check-circle"></i>
+                                <span>The last block update occured 14 minutes ago</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="modal fade" my-modal id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true" style="margin-top:50px">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title">Confirm Bitcoin Withdrawal</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form role="form" class="form-horizontal ng-pristine ng-valid">
+                                <div class="form-group">
+                                    <label class="col-sm-offset-1 col-sm-3 control-label align-right">
+                                        Hex Address
+                                    </label>
+                                    <div class="col-sm-7">
+
+                                        <div class="input-group new-address">
+                                            <div class="input-group-btn">
+                                                <button class="btn btn-default" type="button">
+                                                    <i class="fa fa-map-pin"></i>
+                                                </button>
+                                            </div>
+                                            <!-- /btn-group -->
+                                            <input type="text" class="form-control text-right" ng-model="hexAddress" disabled="" style="font-size:12px" placeholder="Generate a new address">
+                                            <span class="input-group-addon">HEX</span>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-offset-1 col-sm-3 control-label align-right">
+                                        Transanction Fee
+                                    </label>
+                                    <div class="col-sm-7">
+                                        <div class="input-group">
+                                            <div class="input-group-btn">
+                                                <button class="btn btn-default" type="button" disabled="">
+                                                    <i class="fa fa-minus"></i>
+                                                </button>
+                                            </div>
+                                            <!-- /btn-group -->
+                                            <input class="form-control text-right" type="text" ng-model="selectedCoin.transanction_fee" ng-change="textChange()" value="{{selectedCoin.transanction_fee}}" disabled=""
+                                                readonly="readonly" placeholder="{{selectedCoin.transanction_fee}}">
+                                            <span class="input-group-addon">{{selectedCoin.coinId}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-offset-1 col-sm-3 control-label">
+                                        Total
+                                    </label>
+                                    <div class="col-sm-7">
+                                        <div class="input-group new-address">
+                                            <div class="input-group-btn">
+                                                <button class="btn btn-default" type="button" disabled="">
+                                                    <i class="fa fa-map-marker"></i>
+                                                </button>
+                                            </div>
+                                            <!-- /btn-group -->
+                                            <input type="text" class="form-control text-right" style="font-size:12px"  readonly="" disabled=""
+                                               ng-model="withdrawalAmount" placeholder="">
+                                            <span class="input-group-addon">{{selectedCoin.coinId}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <blockquote style="margin:0px">
+                                <p>After clicking confirm, you will receive an email with a link to verify your withdrawal.</p>
+                            </blockquote>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" data-dismiss="modal" class="btn btn-default">Cancel</button>
+                            <button type="button" class="btn btn-primary">Confirm</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div ng-include="'app/dashboard/wallet/withdrawal/withdrawal.html'"></div>
+        </div>
+        <div class="col-sm-6">
+            <div ng-include="'app/dashboard/wallet/deposit/deposit.html'"></div>
+        </div>
+    </div>
+
+</section>
+<!-- end of withdrawal container -->

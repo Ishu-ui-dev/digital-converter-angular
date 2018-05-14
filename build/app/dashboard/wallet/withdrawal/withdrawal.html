@@ -1,0 +1,177 @@
+<div class="row" ng-controller="WithdrawalController">
+    <div class="col-sm-12">
+        <section class="pending-wtd-container">
+            <h2 class="main-heading">
+                PENDING WITHDRAWALS
+            </h2>
+            <div class="table-responsive">
+                <table st-table="pendingCollection" st-safe-src="pendingData" class="table table-striped text-center">
+                    <thead>
+                            <tr class="width-auto no-border-required">
+                                    <td colspan="9">
+                                        <div class="table-toolbar">
+        
+                                            <div class="col-sm-3 align-left">
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <div class="toolbar-right pull-right">
+                                                    <div class="select-rows">
+                                                        <label>Display</label>
+                                                        <select ng-model="rows_per_page.value" ng-options="v for v in rows_per_page.values" ng-change="">
+                                                        </select>
+                                                        <label>rows</label>
+                                                    </div>
+                                                    <div class="select-search">
+                                                        <label>Search</label>
+                                                        <input st-search="" type="search" class="form-control" />
+        
+                                                    </div>
+                                                    <button class="btn btn-default btn-toolbar">
+                                                        <i class="fa fa-refresh"></i>
+                                                    </button>
+        
+                                                </div>
+                                            </div>
+        
+                                        </div>
+                                    </td>
+                                </tr>
+                        <tr>
+                            <th>
+                                <span class="fa fa-plus"></span>
+                            </th>
+                            <th st-sort="date">DATE</th>
+                            <th st-sort="currency">CURRENCY</th>
+                            <th st-sort="units">UNITS</th>
+                            <th st-sort="status">STATUS</th>
+                            <th>
+                                <span class="fa fa-plus"></span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody ng-if="!havingData">
+                        <tr>
+                            <td colspan="7">{{dataStatus}}</td>
+                        </tr>
+                    </tbody>
+                    <tbody ng-if="havingData">
+                        <tr class="width-auto" ng-if="havingData" ng-repeat="pending in pendingCollection">
+                            <td>
+                                <!--<button class="btn btn-primary btn-plus btn-sm text-center wallet" data-toggle="modal" data-target="#1">
+                                        <span class="fa fa-plus"></span>
+                                    </button>
+                                    <button class="btn btn-primary btn-plus btn-sm text-center wallet" data-toggle="modal" data-target="#2">
+                                        <span class="fa fa-minus"></span>
+                                    </button> -->
+                            </td>
+                            <td>{{pending.date}}</td>
+                            <td>{{pending.currency}}</td>
+                            <td>{{pending.units}} </td>
+                            <td>{{pending.status}}</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="5" class="text-center">
+                                <div st-pagination="" st-items-by-page="itemByPage" st-displayed-pages="7"></div>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+
+
+            </div>
+        </section>
+        <section class="pending-wtd-container">
+            <h2 class="main-heading">
+                WITHDRAWAL HISTORY
+            </h2>
+
+            <div class="table-responsive">
+                <table st-table="displayCollection" st-safe-src = "withdrawal_history" class="table table-striped text-center">
+
+                    <thead>
+                        <tr class="width-auto no-border-required">
+                            <td colspan="9">
+                                <div class="table-toolbar">
+
+                                    <div class="col-sm-3 align-left">
+
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" value="checkList" ng-model="checkList" ng-change="" />Hide cancelled
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <div class="toolbar-right pull-right">
+                                            <div class="select-rows">
+                                                <label>Display</label>
+                                                <select ng-model="rows_per_page.value" ng-options="v for v in rows_per_page.values" ng-change="">
+                                                </select>
+                                                <label>rows</label>
+                                            </div>
+                                            <div class="select-search">
+                                                <label>Search</label>
+                                                <input st-search="" type="search" class="form-control" />
+
+                                            </div>
+                                            <button class="btn btn-default btn-toolbar">
+                                                <i class="fa fa-refresh"></i>
+                                            </button>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <span class="fa fa-plus"></span>
+                            </th>
+                            <th st-sort="date">DATE</th>
+                            <th st-sort="currency">CURRENCY</th>
+                            <th st-sort="units">UNITS</th>
+                            <th st-sort="status">STATUS</th>
+                            <th>
+                                <span class="fa fa-plus"></span>
+                            </th>
+                        </tr>
+                    </thead>
+
+
+
+                    <tbody>
+                        <tr class="width-auto" ng-if="havingData" ng-repeat="withdraw in displayCollection">
+                            <td>
+                                <!--<button class="btn btn-primary btn-plus btn-sm text-center wallet" data-toggle="modal" data-target="#1">
+                                                <span class="fa fa-plus"></span>
+                                            </button>
+                                            <button class="btn btn-primary btn-plus btn-sm text-center wallet" data-toggle="modal" data-target="#2">
+                                                <span class="fa fa-minus"></span>
+                                            </button> -->
+                            </td>
+                            <td>{{withdraw.date}}</td>
+                            <td>{{withdraw.currency}}</td>
+                            <td>{{withdraw.units}} </td>
+                            <td>{{withdraw.status}}</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                            <tr>
+                                    <td colspan="5" class="text-center">
+                                        <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="7"></div>
+                                    </td>
+                                </tr>
+                    </tfoot>
+                </table>
+
+
+            </div>
+        </section>
+    </div>
+
+</div>

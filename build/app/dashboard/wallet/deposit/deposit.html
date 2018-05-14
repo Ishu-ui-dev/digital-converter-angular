@@ -1,0 +1,156 @@
+<div class="row" ng-controller="DepositController">
+    <div class="col-sm-12">
+        <section class="pending-wtd-container">
+            <h2 class="main-heading">
+                PENDING DEPOSITS
+            </h2>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="toolbar-right pull-right">
+                        <div class="select-rows">
+                            <label>Display</label>
+                            <select>
+                                <option value="10">10</option>
+                                <option value="25">25</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                            </select>
+                        </div>
+                        <div class="select-search">
+                            <label>Search</label>
+                            <input type="search" class="form-control" />
+                        </div>
+                        <button class="btn btn-default btn-toolbar">
+                            <i class="fa fa-refresh"></i>
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table st-table="ethereum_market" class="table table-striped text-center">
+                    <thead>
+                        <tr>
+                            <th>
+                                <span class="fa fa-plus"></span>
+                            </th>
+                            <th>LAST CHECKED</th>
+                            <th>CURRENCY</th>
+                            <th>UNITS</th>
+                            <th>CONFIRMATIONS</th>
+                        </tr>
+                    </thead>
+                    <tbody ng-if="!havingData">
+                        <tr>
+                            <td colspan="7">{{dataStatus}}</td>
+                        </tr>
+                    </tbody>
+                    <tbody ng-if="havingData">
+                        <tr class="width-auto">
+                            <td>
+                                <button class="btn btn-primary btn-plus btn-sm text-center wallet" data-toggle="modal" data-target="#1">
+                                    <span class="fa fa-plus"></span>
+                                </button>
+                                <button class="btn btn-primary btn-plus btn-sm text-center wallet" data-toggle="modal" data-target="#2">
+                                    <span class="fa fa-minus"></span>
+                                </button>
+                            </td>
+                            <td>Bitcoin</td>
+                            <td>BTC</td>
+                            <td>0.00000000 </td>
+                            <td>0.00000000</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="5" class="text-center">
+                                <div st-pagination="" st-items-by-page="itemByPage" st-displayed-pages="7"></div>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+
+
+            </div>
+        </section>
+        <section class="pending-wtd-container">
+            <h2 class="main-heading">
+                DEPOSIT HISTORY
+            </h2>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="toolbar-right pull-right">
+                        <div class="select-rows">
+                            <label>Display</label>
+                            <select>
+                                <option value="10">10</option>
+                                <option value="25">25</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                            </select>
+                        </div>
+                        <div class="select-search">
+                            <label>Search</label>
+                            <input type="search" class="form-control" />
+                        </div>
+                        <button class="btn btn-default btn-toolbar">
+                            <i class="fa fa-refresh"></i>
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table st-table="ethereum_market" class="table table-striped text-center">
+                    <thead>
+                        <tr>
+                            <th>
+                                <span class="fa fa-plus"></span>
+                            </th>
+                            <th>DATE</th>
+                            <th>CURRENCY</th>
+                            <th>UNITS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="width-auto" ng-repeat="history in depositHistory">
+                            <td>
+                                <button class="btn btn-primary btn-plus btn-xs text-center wallet" ng-click="selectedDepositHistory(history)" data-toggle="collapse" data-target="#{{history.dep_id}}">
+                                    <span class="fa fa-plus"></span>
+                                </button>
+
+                            </td>
+                            <td>{{history.date}}</td>
+                            <td>{{history.currency}}</td>
+                            <td>{{history.units}} </td>
+
+                        </tr>
+                        <tr id="{{selected_deposit_history.dep_id}}" class="collapse">
+
+                            <td colspan="4">
+                                <ul class="list-unstyled align-left">
+                                    <li>
+                                        <b>Address: </b> {{selected_deposit_history.address}}
+                                    </li>
+                                    <li>
+                                        <b>TxId:</b> {{selected_deposit_history.txId}}
+                                    </li>
+                                </ul>
+
+                            </td>
+
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="5" class="text-center">
+                                <div st-pagination="" st-items-by-page="itemByPage" st-displayed-pages="7"></div>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </section>
+    </div>
+
+</div>

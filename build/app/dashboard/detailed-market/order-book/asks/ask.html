@@ -1,0 +1,49 @@
+<div class="col-sm-6">
+    <h2 class="main-heading">ASK</h2>
+    <div class="table-responsive">
+        <table width="100%" st-table="rowCollection" st-safe-src="bids_data" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        <i class="fa fa-plus"></i>
+                    </th>
+                    <th st-sort="sum">Sum</th>
+                    <th st-sort="total">Total</th>
+                    <th st-sort="size">Size(XRP)</th>
+                    <th st-sort="bid">BID(ETH)</th>
+                    <th>
+                        <i class="fa fa-star"></i>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="width-auto" ng-repeat="bid in rowCollection">
+                    <td class="text-center">
+                        <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#buy_ConfirmOrder">
+                            <i class="fa fa-caret-down"></i>
+                        </button>
+                    </td>
+                    <td class="align-right">{{bid.sum}}</td>
+                    <td class="align-right">{{bid.total}}</td>
+                    <td class="align-right">{{bid.size}}</td>
+                    <td class="align-right">{{bid.bid}}</td>
+                    <td></td>
+                </tr>
+
+            </tbody>
+            <!-- <tfoot>
+                            <tr>
+                                <td class="text-center" st-pagination = "" st-items-by-page="10" colspan="6"></td>
+                            </tr>
+                        </tfoot> -->
+            <tfoot>
+                <tr>
+                    <td colspan="6" class="text-center">
+                        <div st-pagination="" st-items-by-page="10" st-displayed-pages="3"></div>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+</div>

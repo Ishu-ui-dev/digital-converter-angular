@@ -1,0 +1,58 @@
+<form role="form" class="form-horizontal change-password">
+    <div class="panel panel-default col-md-10">
+        <div class="panel-body">
+            <h4>
+                <i>Bittrex encourages the use of two-factor authentication</i>
+            </h4>
+            Two-factor authentication (2fa) greatly increases security by requiring both your password and another form of authentication.
+            Bittrex implements 2fa utilizing
+            <a target="_blank" href="http://en.wikipedia.org/wiki/Google_Authenticator"
+                rel="noreferrer">Google Authenticator</a>. To enable this feature simply download Google Authenticator on your mobile device and
+            scan the QRCode.
+            <br>
+            <br> Once you have linked the Authenticator with Bittrex, enter the 6 digit code provided.
+            <br>
+            <br>
+            <strong>Please back up your secret key. </strong> Resetting your two-factor authentication requires opening a support
+            ticket and may take up to 7 days to address.
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <h2 class="main-heading text-uppercase">TWO-FACTOR AUTHENTICATION
+        <button class="btn btn-success text-uppercase">DISABLED</button>
+    </h2>
+    <!-- <span class="alert alert-danger">
+                    Warning! Disabling two-factor authentication will reset your secret key and delete all of your API keys.
+            </span> -->
+    <div class="form-group">
+        <label for="Secret2FA" class="col-md-3 control-label" style="font-size: 20px">
+            <span class="fa fa-lock"></span>&nbsp; Secret Key*</label>
+        <div class="col-md-7">
+            <p class="form-control-static" style="font-size: 20px">
+                <strong>ZYC4AT27SLWCKQUM</strong>
+            </p>
+        </div>
+        <div class="col-xs-10">
+            <strong style="color: red">* Please back up your secret key. </strong> Resetting your two-factor authentication requires opening a support
+            ticket and may take up to 7 days to address
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="col-sm-12">
+        <qrcode data="ZYC4AT27SLWCKQUM" size="120"></qrcode>
+    </div>
+    <div class="form-group">
+        <label for="authenticateCode" class="col-sm-3 control-label">Authenticator Code</label>
+        <div class="col-sm-7">
+            <input type="text" autocomplete="off" class="form-control" name="authenticateCode" placeholder="input your 6-digit authenticator code"
+            />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-3">
+            <button type="button" class="btn btn-primary">
+                Enable 2FA
+            </button>
+        </div>
+    </div>
+</form>

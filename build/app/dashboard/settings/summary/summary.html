@@ -1,0 +1,116 @@
+<div class="summary-wrapper">
+    <h1>Account Information</h1>
+    <div class="row">
+        <ul class="list-unstyled summary-list">
+            <li class="name">
+                <div class="col-sm-6 col-xs-12">
+                    <h2>User Name</h2>
+                </div>
+                <div class="col-sm-6 col-xs-12">
+                    <h5 class="text-uppercase">
+                        <i>{{username}}</i>
+                    </h5>
+                </div>
+            </li>
+            <li class="acc-type">
+                <div class="col-sm-6 col-xs-12">
+                    <h2>Account Type</h2>
+                    <button class="btn btn-primary text-uppercase" disabled>New</button>
+                    <a href="#">
+                        <i class="fa fa-question-circle fa-2x"></i>
+                    </a>
+                </div>
+                <div class="col-sm-6 col-xs-12">
+                    <button class="btn btn-success" disabled>
+                        <i class="fa fa-angle-double-up"></i>
+                        Upgrade To Basic
+                    </button>
+                    <small class="new-account">New accounts must verify before withdrawing from Bittrex.</small>
+                </div>
+            </li>
+            <div class="list-divider"></div>
+            <li class="digital-trade">
+                <div class="col-sm-6 col-xs-8">
+                    <h2>
+                        <i class="fa fa-btc fa-sm fa-fw"></i> Digital Token Trading
+                    </h2>
+                </div>
+                <div class="col-sm-6 col-xs-4">
+                    <i class="fa fa-square-o fa-2x"></i>
+                </div>
+            </li>
+            <li class="fiat-trade">
+                <div class="col-sm-6 col-xs-8">
+                    <h2>
+                        <i class="fa fa-usd fa-fw"></i> Fiat Trading
+                    </h2>
+                </div>
+                <div class="col-sm-6 col-xs-4">
+                    <i class="fa fa-square-o fa-2x"></i>
+                </div>
+            </li>
+            <li class="market-trading">
+                <div class="col-sm-6 col-xs-8">
+                    <h2>
+                        <i class="fa fa-bank fa-fw"></i> MARGIN TRADING
+                    </h2>
+                </div>
+                <div class="col-sm-6 col-xs-4">
+                    <i class="fa fa-square-o fa-2x"></i>
+                </div>
+            </li>
+            <div class="list-divider"></div>
+            <li class="withdrawal-limit">
+                <div class="col-sm-6">
+                    <h2>
+                        <i class="fa fa-cloud-upload fa-fw"></i> DAILY WITHDRAWAL LIMIT
+                    </h2>
+                </div>
+                <div class="col-sm-6">
+                    <h5>
+                        {{daily_limit}} BTC
+                    </h5>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <h2>User Activity (Last 100 Entries)</h2>
+    <div class="table-responsive">
+        <table width="100%" class="user-table">
+            <thead>
+                <tr>
+                    <th>
+                        Time Stamp
+                    </th>
+                    <th>
+                        Address
+                    </th>
+                    <th>
+                        User Agent
+                    </th>
+                    <th>
+                        Activity
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="data in summary_section">
+                    <td>
+                        {{data.time_stamp}}
+                    </td>
+                    <td>
+                        {{data.address}}
+                    </td>
+                    <td>
+                        {{data.user_agent}}
+                    </td>
+                    <td>
+                        {{data.activity}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

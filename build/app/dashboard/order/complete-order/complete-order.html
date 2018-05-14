@@ -1,0 +1,103 @@
+<div class="table-responsive completed-orders">
+    <table width="100%" st-table="completed_order" st-pipe="completedOrders">
+        <thead>
+            <tr class="width-auto no-border-required">
+                <td colspan="10">
+                    <div class="table-toolbar">
+                        <div class="col-sm-6 align-left">
+                            <h2 class="main-heading">Completed</h2>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="toolbar-right pull-right">
+                                <div class="select-rows">
+                                    <label>Display</label>
+                                    <select ng-model="rows_per_page.value" ng-options="row.value as row.label for row in rows_per_page" ng-change="changeOnSelect(rows_per_page.value)">
+                                    </select>
+                                    <label>rows</label>
+                                </div>
+                                <div class="column-visibility">
+                                    <div class="dropdown">
+                                        <a href="javascript:void(0)" class="dropdown-toggle btn btn-default" data-toggle="collapse" data-target="#collapse2" data-parent="accordion"
+                                            role="button" aria-haspopup="true" aria-expanded="false">
+                                            <span class="hidden-sm">Column Visibility</span>
+                                            <span class="caret"></span>
+                                        </a>
+                                        <ul class="panel-collapse collapse list-unstyled hidden-xs" id="collapse2">
+                                            <li>
+                                                <button class="btn" ng-click="toggleMenu('closed_date')">CLOSED DATE</button>
+                                            </li>
+                                            <li>
+                                                <button class="btn" ng-click="toggleMenu('open_date')">OPENED DATE</button>
+                                            </li>
+                                            <li>
+                                                <button class="btn" ng-click="toggleMenu('market')">MARKET</button>
+                                            </li>
+                                            <li>
+                                                <button class="btn" ng-click="toggleMenu('comp_type')">TYPE</button>
+                                            </li>
+                                            <li>
+                                                <button class="btn" ng-click="toggleMenu('comp_bid')">BID/ASK</button>
+                                            </li>
+                                            <li>
+                                                <button class="btn" ng-click="toggleMenu('units_filled')">UNITS FILLED</button>
+                                            </li>
+                                            <li>
+                                                <button class="btn" ng-click="toggleMenu('units_total')">UNITS TOTAL</button>
+                                            </li>
+                                            <li>
+                                                <button class="btn" ng-click="toggleMenu('actual_rate')">ACTUAL RATE</button>
+                                            </li>
+                                            <li>
+                                                <button class="btn" ng-click="toggleMenu('closed_date')">COST/PROCEEDS</button>
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                </div>
+                                <div class="select-search">
+                                    <label>Search</label>
+                                    <input type="search" class="form-control" />
+                                </div>
+                                <button class="btn btn-default btn-toolbar">
+                                    <i class="fa fa-refresh"></i>
+                                </button>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th st-sort="closed_date" class="closed_date">CLOSED DATE</th>
+                <th st-sort="opened_date" class = "open_date">OPENED DATE</th>
+                <th st-sort="market" class = "market"> MARKET</th>
+                <th st-sort="type" class = "comp_type">TYPE</th>
+                <th st-sort="order_type" class= "comp_bid">BID/ASK</th>
+                <th st-sort="units_filled" class = "units_filled">UNITS FILLED</th>
+                <th st-sort="units_total" class = "units_total">UNITS TOTAL</th>
+                <th st-sort="actual_rate" class = "actual_rate">ACTUAL RATE</th>
+                <th st-sort="cost" class = "closed_date">COST/PROCEEDS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="width-auto" ng-repeat="complete in completed_order">
+                <td class="closed_date">{{complete.closed_date}}</td>
+                <td class = "open_date">{{complete.opened_date}}</td>
+                <td class = "market">{{complete.market}} </td>
+                <td class = "comp_type">{{complete.type}}</td>
+                <td class= "comp_bid">{{complete.order_type}}</td>
+                <td class = "units_filled">{{complete.units_filled}}</td>
+                <td class = "units_total">{{complete.units_total}}</td>
+                <td class = "actual_rate">{{complete.actual_rate}}</td>
+                <td class = "closed_date">{{complete.cost}}</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td class="text-center" st-pagination="" st-items-by-page="itemsByPage" colspan="10">
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
