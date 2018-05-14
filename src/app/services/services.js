@@ -1,33 +1,18 @@
 var app = angular.module('appModule');
 
-app.factory('fileUploadService', ['$http', '$q', function($http, $q) {
+app.factory('MainService', [function() {
+	
 	var _file = {};
-	
-	var deferred = $q.defer();
-	_file.uploadFileToUrl = function(file) {  
-		$http({
-				method: 'POST',
-				url: 'input_user_story_1.txt',
-				headers: {
-					'Content-Type' : 'application/json',
-				},
-				data: {
-					"name": file
-				}
-		})
-		.then(function(response) {
-			deferred.resolve(response);
-		})
-		.catch(function(error) {
-			deferred.reject(response);
-		});
-		return deferred.promise;
-	}
-	
+	_file.MacroPolo = function(num) {
+		if(num % 28 === 0)
+			return "MacroPolo";
+		else if(num % 7 === 0) 
+			return "Polo"
+		else if(num % 4 === 0)
+			return "Macro"
+		else 
+			return num
+	}	
 	return _file;
-	
-	
-	
-	
 }]);
 

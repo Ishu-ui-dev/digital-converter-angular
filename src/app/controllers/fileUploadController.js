@@ -1,5 +1,5 @@
 var app = angular.module('appModule');
-app.controller('FileUploadController', ['$scope', 'fileUploadService', function($scope, fileUploadService) {
+app.controller('FileUploadController', ['$scope', function($scope) {
 	$scope.inputFile = ""; 
 	$scope.res = ""; 
 	
@@ -141,24 +141,6 @@ app.controller('FileUploadController', ['$scope', 'fileUploadService', function(
           return 0;
       }
     };
-	
-	
-	$scope.uploadFile = function() {
-		alert("called");
-		var form =  $scope.inputFile;
-		var formData = new FormData();
-		
-		formData.append("name", form); 
-		
-		fileUploadService.uploadFileToUrl(formData)
-		.then(function(response) {
-			console.log(response);
-		})
-		.catch(function(error) {
-			console.log(error);
-		})
-		
-	}
 	
 	
 }]);
