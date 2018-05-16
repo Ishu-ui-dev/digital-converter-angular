@@ -1,17 +1,22 @@
 var app = angular.module('appModule');
 
-app.factory('MainService', [function() {
+app.factory('MacropoloService', [function() {
 	
 	var _file = {};
-	_file.MacroPolo = function(num) {
-		if(num % 28 === 0)
+	_file.generateValue = function(num) {
+		if(num % 28 === 0) {
 			return "MacroPolo";
-		else if(num % 7 === 0) 
+		}	
+		else if(num % 7 === 0) {
 			return "Polo"
-		else if(num % 4 === 0)
-			return "Macro"
-		else 
-			return num
+		}
+		else if(num % 4 === 0) {
+			return "Macro";
+		}
+		else  {
+		 return num
+		}
+			
 	}	
 	return _file;
 }]);

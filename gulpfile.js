@@ -17,6 +17,10 @@ debug = require('gulp-debug')
  
 var allCss = "src/**/*.css";
 allJs =  "src/**/*.js";
+vendorJs = [
+			"node_modules/angular-file-saver/dist/angular-file-saver.min.js",
+			"node_modules/angular-file-saver/dist/angular-file-saver.bundle.min.js"
+		    ]
 
 
 var config = {
@@ -52,6 +56,14 @@ gulp.task('allJs', function() {
     .pipe(gulp.dest('build/js'))
 })
 
+gulp.task('vendorJs', function() {
+   return gulp.src(vendorJs)
+    .pipe(plumber())
+    //.pipe(uglify())
+    .pipe(concat('vendor.min.js'))
+    .pipe(gulp.dest('build/js'))
+})
+
 gulp.task('html', function() {
     return gulp.src("src/*.html")
     .pipe(plumber())
@@ -69,20 +81,21 @@ gulp.task('allHtml', function() {
     .pipe(gulp.dest('build/app'))
 })
 
-gulp.task('injectAll', ['allCss', 'allJs'], function() {
+gulp.task('injectAll', ['allCss', 'allJs', 'vendorJs'], function() {
     return gulp.src('src/index.html')
     .pipe(debug())
-     .pipe(inject(gulp.src(['build/js/all.min.js', 'build/css/all.min.css'], {read: false}), {ignorePath: 'build/',} ))
+     .pipe(inject(gulp.src(['build/js/vendor.min.js', 'build/js/all.min.js', 'build/css/all.min.css'], {read: false}), {ignorePath: 'build/',} ))
      .pipe(plumber())
     .pipe(gulp.dest('build')) 
 })
 
 //watch task
 gulp.task('watch', function() {
-   // gulp.watch([vendorCssPath], ['vendorCss']);
+    // gulp.watch([vendorCssPath], ['vendorCss']);
     gulp.watch(allCss, ['allCss']);
-   // gulp.watch([vendorJsPath], ['vendorJS']);
+    // gulp.watch([vendorJsPath], ['vendorJS']);
     gulp.watch(allJs, ['allJs']);
+	gulp.watch(vendorJs, ['vendorJs']);
     //gulp.watch('src/app/**/*.html', ['allHtml']);
     //gulp.watch("src/*.html", ['html']);
 })

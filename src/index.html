@@ -63,9 +63,12 @@
 						</div>
 						<span ng-bind="form.inputFile.name"></span>
 						<button class = "btn btn-primary"> Upload File</button>
+						<a href= "" ng-disabled = "res.length == ''" class = "btn btn-primary" ng-click = "downloadFile(res)">
+							Download</a>
 						<div class = "form-group" ng-if = "res.length != ''">
 							<b>Output File: </b>
 							<span ng-bind="res"></span>
+							
 						</div>
 						
 				</div>

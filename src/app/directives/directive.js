@@ -44,9 +44,9 @@ app.directive('newCollection', function() {
 	return {
 		restrict: 'E',
 		scope: {
-			category: "@",
-			item: "=",
-			selected: "&"
+			category: "@", // (Text binding /one way data binding
+			item: "=", // ( Direct model binging / two way data binding)
+			selected: "&" // (Behaviour binding / method binding)
 		},
 		template: "<div class='panel panel-primary'>" + 
 					  "<div class='panel-heading'>Store1</div>" +

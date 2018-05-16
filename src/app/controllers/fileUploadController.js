@@ -1,5 +1,5 @@
 var app = angular.module('appModule');
-app.controller('FileUploadController', ['$scope', function($scope) {
+app.controller('FileUploadController', ['$scope', 'FileSaver', 'Blob', function($scope, FileSaver, Blob) {
 	$scope.inputFile = ""; 
 	$scope.res = ""; 
 	
@@ -141,6 +141,11 @@ app.controller('FileUploadController', ['$scope', function($scope) {
           return 0;
       }
     };
+	
+	$scope.downloadFile = function(text) { 
+		var data = new Blob([text], { type: 'text/plain;charset=utf-8' });
+		FileSaver.saveAs(data, 'output.txt');
+	}
 	
 	
 }]);
